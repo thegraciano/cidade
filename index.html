@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Cidade Acessível</title>
+<meta name="description" content="Jogo infantil sobre uma cidade onde todas as pessoas podem participar.">
+<link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAgMTIwIiB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCI+PGcgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cmVjdCB4PSI0IiB5PSI0IiB3aWR0aD0iMTEyIiBoZWlnaHQ9IjExMiIgcng9IjMwIiBmaWxsPSJ1cmwoI2cpIi8+PGNpcmNsZSBjeD0iNjAiIGN5PSIxMDQiIHI9IjQ2IiBmaWxsPSIjYmRlOGM4IiBvcGFjaXR5PSIuNTUiLz48cmVjdCB4PSIyMiIgeT0iNDgiIHdpZHRoPSIyMiIgaGVpZ2h0PSI0NCIgcng9IjYiIGZpbGw9IiNmZmYiIG9wYWNpdHk9Ii45NSIvPjxyZWN0IHg9IjUwIiB5PSIzNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjU4IiByeD0iNiIgZmlsbD0iI2ZmZiIvPjxyZWN0IHg9IjgwIiB5PSI1NiIgd2lkdGg9IjIwIiBoZWlnaHQ9IjM2IiByeD0iNiIgZmlsbD0iI2ZmZiIgb3BhY2l0eT0iLjkiLz48cmVjdCB4PSIyOCIgeT0iNTYiIHdpZHRoPSIxMCIgaGVpZ2h0PSI4IiByeD0iMiIgZmlsbD0iIzdjYzZmMCIvPjxyZWN0IHg9IjU2IiB5PSI0NCIgd2lkdGg9IjEyIiBoZWlnaHQ9IjkiIHJ4PSIyIiBmaWxsPSIjN2NjNmYwIi8+PHJlY3QgeD0iODUiIHk9IjY0IiB3aWR0aD0iMTAiIGhlaWdodD0iOCIgcng9IjIiIGZpbGw9IiM3Y2M2ZjAiLz48cGF0aCBkPSJNMTQgOTYgTDg2IDYyIGgxNiB2MzQgeiIgZmlsbD0iI2ZmZDI1ZSIvPjxwYXRoIGQ9Ik0xNCA5NiBMODYgNjIgaDYgTDIyIDk2IHoiIGZpbGw9IiNmZmYyYzkiLz48Y2lyY2xlIGN4PSI2NCIgY3k9IjQ2IiByPSIzLjYiIGZpbGw9IiMzZjhjZmYiIG9wYWNpdHk9IjAiLz48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiM1YWE5ZmYiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMyMmI4YjAiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48L2c+PC9zdmc+">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ===================== TELA DE CARREGAMENTO ===================== -->
+<div id="loader" class="loader">
+	<div class="loader-box">
+		<img id="loaderLogo" class="loader-logo" alt="Cidade Acessível" data-sprite="logo">
+		<div class="load-bar"><div id="loadFill" class="load-fill"></div></div>
+		<p id="loadHint" class="load-hint">Preparando a cidade…</p>
+		<p class="load-credit">Criado por <b>Leonardo Graciano</b></p>
+	</div>
+	<div class="loader-city">
+		<img class="lc lc1" alt="" data-sprite="casa">
+		<img class="lc lc2" alt="" data-sprite="escola">
+		<img class="lc lc3" alt="" data-sprite="arvore">
+		<img class="lc lc4" alt="" data-sprite="loja">
+		<img class="lc lc5" alt="" data-sprite="arvore">
+		<img id="loadWalker" class="lc walker" alt="" data-sprite="p-cadeira-2">
+	</div>
+</div>
+
+<!-- ===================== BARRA SUPERIOR ===================== -->
+<header id="hud" class="hud" hidden>
+	<button id="btnHome" class="icon-btn" title="Menu" aria-label="Voltar ao menu">
+		<img alt="" data-sprite="ui-casa">
+	</button>
+	<div class="stars" aria-label="estrelas">
+		<img alt="estrelas" data-sprite="ui-estrela">
+		<span id="starCount">0</span>
+	</div>
+	<div class="hud-right">
+		<button id="btnListen" class="icon-btn" title="Ouvir de novo" aria-label="Ouvir de novo">
+			<img alt="" data-sprite="ui-som">
+		</button>
+		<button id="btnSound" class="icon-btn" title="Ligar ou desligar o som" aria-label="Ligar ou desligar o som">
+			<img id="soundIcon" alt="" data-sprite="ui-som">
+		</button>
+	</div>
+</header>
+
+<main id="app">
+
+	<!-- ===================== NOME ===================== -->
+	<section id="screen-name" class="screen">
+		<img class="logo-big" alt="Cidade Acessível" data-sprite="logo">
+		<div class="card name-card">
+			<div class="name-guide">
+				<img class="guide-img" alt="" data-sprite="guia-oi">
+				<p class="bubble">Olá! Como você se chama?</p>
+			</div>
+			<input id="nameInput" type="text" maxlength="18" autocomplete="off" spellcheck="false"
+				placeholder="seu nome" aria-label="Escreva seu nome">
+			<button id="btnStart" class="big-btn primary">
+				<img alt="" data-sprite="ui-play"><span>COMEÇAR</span>
+			</button>
+			<p id="nameHelp" class="hint">Um adulto pode escrever o nome.</p>
+		</div>
+	</section>
+
+	<!-- ===================== MENU ===================== -->
+	<section id="screen-menu" class="screen" hidden>
+		<img class="logo-top" alt="Cidade Acessível" data-sprite="logo">
+		<div class="menu-hello">
+			<img class="guide-img sm" alt="" data-sprite="guia">
+			<p id="menuHello" class="bubble">Vamos descobrir!</p>
+		</div>
+		<div class="menu-grid">
+			<button class="menu-card" data-go="map"><img alt="" data-sprite="ui-play"><span>JOGAR</span></button>
+			<button class="menu-card" data-go="detective"><img alt="" data-sprite="ui-lupa"><span>DETETIVE</span></button>
+			<button class="menu-card" data-go="build"><img alt="" data-sprite="ui-construir"><span>CONSTRUIR</span></button>
+			<button class="menu-card" data-go="achievements"><img alt="" data-sprite="ui-medalha"><span>CONQUISTAS</span></button>
+			<button class="menu-card" data-go="settings"><img alt="" data-sprite="ui-config"><span>AJUSTES</span></button>
+			<button class="menu-card" data-go="credits"><img alt="" data-sprite="ui-info"><span>CRÉDITOS</span></button>
+		</div>
+	</section>
+
+	<!-- ===================== MAPA ===================== -->
+	<section id="screen-map" class="screen" hidden>
+		<div class="screen-head">
+			<h1 class="title">Escolha um lugar</h1>
+			<p id="mapTip" class="subtitle">Toque em um lugar da cidade.</p>
+		</div>
+		<div id="cityMap" class="city-map">
+			<div id="cityDeco" class="city-deco" aria-hidden="true"></div>
+			<div id="cityLife" class="city-life" aria-hidden="true"></div>
+			<div id="cityPlaces" class="city-places"></div>
+		</div>
+		<div class="row">
+			<button id="btnGoBuildFromMap" class="big-btn ghost" data-go="build">
+				<img alt="" data-sprite="ui-construir"><span>CONSTRUIR</span>
+			</button>
+		</div>
+	</section>
+
+	<!-- ===================== MISSÃO ===================== -->
+	<section id="screen-mission" class="screen" hidden>
+		<div class="screen-head">
+			<h1 class="title"><img id="missionIcon" class="title-ico" alt=""><span id="missionName">Escola</span></h1>
+			<div id="missionSteps" class="steps" aria-hidden="true"></div>
+		</div>
+		<div id="stage" class="stage">
+			<div id="stageBuilding" class="stage-building"></div>
+			<div id="stageBarrier" class="stage-barrier"></div>
+			<div id="stageFix" class="stage-fix"></div>
+			<div id="stageActor" class="stage-actor"></div>
+			<div id="stageHelpers" class="stage-helpers"></div>
+			<div id="stageFx" class="stage-fx" aria-hidden="true"></div>
+		</div>
+		<div id="missionBubble" class="guide-line">
+			<img class="guide-img sm" alt="" data-sprite="guia">
+			<p id="missionSay" class="bubble"></p>
+		</div>
+		<div id="choices" class="choices"></div>
+		<div id="baStrip" class="ba-strip" hidden>
+			<figure><figcaption>ANTES</figcaption><div id="baBefore" class="ba-box"></div></figure>
+			<div class="ba-arrow">➜</div>
+			<figure><figcaption>DEPOIS</figcaption><div id="baAfter" class="ba-box ok"></div></figure>
+		</div>
+		<button id="btnMissionNext" class="big-btn primary" hidden>
+			<img alt="" data-sprite="ui-check"><span>CONTINUAR</span>
+		</button>
+	</section>
+
+	<!-- ===================== DETETIVE ===================== -->
+	<section id="screen-detective" class="screen" hidden>
+		<div class="screen-head">
+			<h1 class="title"><img class="title-ico" alt="" data-sprite="ui-lupa"><span>Olhe com atenção</span></h1>
+			<p class="subtitle">Encontrados <b><span id="detFound">0</span>/<span id="detTotal">3</span></b></p>
+		</div>
+		<div id="detScene" class="det-scene"></div>
+		<div class="guide-line">
+			<img class="guide-img sm" alt="" data-sprite="guia">
+			<p id="detTip" class="bubble">O que está atrapalhando as pessoas?</p>
+		</div>
+		<button id="btnDetNext" class="big-btn primary">
+			<img alt="" data-sprite="ui-lupa"><span>OUTRA CENA</span>
+		</button>
+	</section>
+
+	<!-- ===================== CONSTRUIR ===================== -->
+	<section id="screen-build" class="screen build" hidden>
+		<div class="build-top">
+			<p id="buildTip" class="bubble tip">Toque em uma peça e depois na cidade. Arraste para mover.</p>
+			<div class="build-tools">
+				<button id="btnEraser" class="tool" aria-pressed="false"><img alt="" data-sprite="ui-borracha"><span>APAGAR</span></button>
+				<button id="btnClear" class="tool"><img alt="" data-sprite="ui-lixo"><span>LIMPAR</span></button>
+				<button id="btnFinish" class="tool go"><img alt="" data-sprite="ui-festa"><span>PRONTO</span></button>
+			</div>
+		</div>
+		<div class="build-main">
+			<div id="buildCanvas" class="build-canvas">
+				<div id="bcItems" class="bc-items"></div>
+				<div id="bcActors" class="bc-actors" aria-hidden="true"></div>
+				<p id="bcEmpty" class="bc-empty">Toque aqui para colocar suas pe��as</p>
+			</div>
+			<div id="palette" class="palette" role="listbox" aria-label="peças"></div>
+		</div>
+	</section>
+
+	<!-- ===================== CONQUISTAS ===================== -->
+	<section id="screen-achievements" class="screen" hidden>
+		<div class="screen-head">
+			<h1 class="title"><img class="title-ico" alt="" data-sprite="ui-medalha"><span>Conquistas</span></h1>
+			<p class="subtitle">Você tem <b><span id="achStars">0</span></b> estrelas</p>
+		</div>
+		<div id="achGrid" class="ach-grid"></div>
+	</section>
+
+	<!-- ===================== AJUSTES ===================== -->
+	<section id="screen-settings" class="screen" hidden>
+		<div class="screen-head">
+			<h1 class="title"><img class="title-ico" alt="" data-sprite="ui-config"><span>Ajustes</span></h1>
+		</div>
+		<div class="card set-card">
+			<button id="setSound" class="set-row"><img alt="" data-sprite="ui-som"><span>Sons</span><b id="setSoundVal">ligado</b></button>
+			<button id="setVoice" class="set-row"><img alt="" data-sprite="ui-mao"><span>Narração</span><b id="setVoiceVal">ligada</b></button>
+			<button id="setContrast" class="set-row"><img alt="" data-sprite="ui-olho"><span>Alto contraste</span><b id="setContrastVal">desligado</b></button>
+			<button id="setMotion" class="set-row"><img alt="" data-sprite="ui-alerta"><span>Menos animação</span><b id="setMotionVal">desligado</b></button>
+			<button id="setName" class="set-row"><img alt="" data-sprite="ui-coracao"><span>Trocar nome</span><b id="setNameVal">—</b></button>
+		</div>
+	</section>
+
+	<!-- ===================== CRÉDITOS ===================== -->
+	<section id="screen-credits" class="screen" hidden>
+		<img class="logo-top" alt="Cidade Acessível" data-sprite="logo">
+		<div class="card credits-card">
+			<p class="credits-line">Criado por</p>
+			<p class="credits-name">Leonardo Graciano</p>
+			<p class="credits-text">Um jogo sobre uma cidade em que todas as pessoas podem chegar, entrar, brincar e participar.</p>
+			<div class="credits-people">
+				<img alt="" data-sprite="p-cadeira"><img alt="" data-sprite="p-bengala"><img alt="" data-sprite="p-idosa"><img alt="" data-sprite="p-carrinho"><img alt="" data-sprite="p-menina">
+			</div>
+		</div>
+	</section>
+
+	<!-- ===================== TELA FINAL ===================== -->
+	<section id="screen-final" class="screen" hidden>
+		<div class="screen-head">
+			<h1 class="title big"><img class="title-ico" alt="" data-sprite="ui-festa"><span>Cidade concluída!</span></h1>
+			<p id="finalMsg" class="subtitle"></p>
+		</div>
+		<div id="finalCity" class="build-canvas final">
+			<div id="finalItems" class="bc-items"></div>
+			<div id="finalActors" class="bc-actors" aria-hidden="true"></div>
+		</div>
+		<button id="btnSnapshot" class="big-btn primary">
+			<img alt="" data-sprite="ui-camera"><span>GUARDAR MINHA CIDADE</span>
+		</button>
+		<p id="snapHint" class="hint"></p>
+		<canvas id="snapCanvas" width="1400" height="900" hidden></canvas>
+	</section>
+
+</main>
+
+<!-- ===================== RECOMPENSA ===================== -->
+<div id="reward" class="reward" hidden aria-live="polite">
+	<div class="reward-box">
+		<img id="rewardEmo" alt="" data-sprite="ui-estrela">
+		<p id="rewardText">Muito bem!</p>
+	</div>
+</div>
+
+<p class="credit-corner">Criado por Leonardo Graciano</p>
+
+<script src="script.js"></script>
+</body>
+</html>
